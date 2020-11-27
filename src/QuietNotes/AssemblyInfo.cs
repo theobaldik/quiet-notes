@@ -1,3 +1,7 @@
+/* Copyright (C) 2020 Filip Klopec
+ * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
+ */
+
 using System.Windows;
 
 [assembly: ThemeInfo(

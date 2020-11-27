@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿/* Copyright (C) 2020 Filip Klopec
+ * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
+ */
+
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
