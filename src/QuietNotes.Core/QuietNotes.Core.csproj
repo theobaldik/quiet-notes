@@ -2,14 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>QNData</AssemblyName>
+    <AssemblyName>QuietNotes.Core</AssemblyName>
     <Version>0.0.2</Version>
     <Authors>Filip Klopec</Authors>
     <Company>Fat Camel Studio</Company>
-    <Description>Data models for Quiet Notes application.</Description>
-    <Copyright>Copyright (C) 2020  Fat Camel Studio</Copyright>
-    <NeutralLanguage />
+    <Description>Core logic for Quiet Notes application.</Description>
+    <Copyright>Copyright (C) 2020  Filip Klopec</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://gitlab.com/Theobaldik/quiet-notes</PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.com/Theobaldik/quiet-notes/-/tree/master</RepositoryUrl>
+    <PackageReleaseNotes>Preview release</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\QuietNotes\QuietNotes.licenseheader" Link="QuietNotes.licenseheader" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

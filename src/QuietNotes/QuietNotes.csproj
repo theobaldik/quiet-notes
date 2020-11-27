@@ -15,7 +15,10 @@
     <PackageReleaseNotes>Preview release</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyName>QuietNotes</AssemblyName>
-    <Copyright>Copyright (C) 2020 Fat Camel Studio</Copyright>
+    <Copyright>Copyright (C) 2020 Filip Klopec</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://gitlab.com/Theobaldik/quiet-notes</PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.com/Theobaldik/quiet-notes/-/tree/master</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +41,10 @@
     <None Remove="Images\but_save_black_10.png" />
     <None Remove="Images\but_save_white_10.png" />
     <None Remove="Images\icon.ico" />
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
