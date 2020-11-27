@@ -1,0 +1,5 @@
+.vs
+src/QuietNotes/bin
+src/QuietNotes/obj
+src/QuietNotes.Core/bin
+src/QuietNotes.Core/obj

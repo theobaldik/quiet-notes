@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\icon.ico</ApplicationIcon>
+    <PackageId>QuietNotes</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Filip Klopec</Authors>
+    <Company>Fat Camel Studio</Company>
+    <Product>Quiet Notes</Product>
+    <Description>Simple notes taking app.</Description>
+    <PackageIcon></PackageIcon>
+    <PackageReleaseNotes>Preview release</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyName>QuietNotes</AssemblyName>
+    <Copyright>Copyright (C) 2020 Fat Camel Studio</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\but_close_black_10.png" />
+    <None Remove="Images\but_close_white_10.png" />
+    <None Remove="Images\but_color_10.png" />
+    <None Remove="Images\but_list_black_10.png" />
+    <None Remove="Images\but_list_white_10.png" />
+    <None Remove="Images\but_max_black_10.png" />
+    <None Remove="Images\but_max_white_10.png" />
+    <None Remove="Images\but_min_black_10.png" />
+    <None Remove="Images\but_min_dark_10.png" />
+    <None Remove="Images\but_min_white_10.png" />
+    <None Remove="Images\but_new_black_10.png" />
+    <None Remove="Images\but_new_white_10.png" />
+    <None Remove="Images\but_pin_black_11.png" />
+    <None Remove="Images\but_pin_black_12.png" />
+    <None Remove="Images\but_pin_white_11.png" />
+    <None Remove="Images\but_pin_white_12.png" />
+    <None Remove="Images\but_save_black_10.png" />
+    <None Remove="Images\but_save_white_10.png" />
+    <None Remove="Images\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\but_close_black_10.png" />
+    <Resource Include="Images\but_close_white_10.png" />
+    <Resource Include="Images\but_color_10.png" />
+    <Resource Include="Images\but_list_black_10.png" />
+    <Resource Include="Images\but_list_white_10.png" />
+    <Resource Include="Images\but_max_black_10.png" />
+    <Resource Include="Images\but_max_white_10.png" />
+    <Resource Include="Images\but_min_black_10.png" />
+    <Resource Include="Images\but_min_dark_10.png" />
+    <Resource Include="Images\but_min_white_10.png" />
+    <Resource Include="Images\but_new_black_10.png" />
+    <Resource Include="Images\but_new_white_10.png" />
+    <Resource Include="Images\but_pin_black_11.png" />
+    <Resource Include="Images\but_pin_black_12.png" />
+    <Resource Include="Images\but_pin_white_11.png" />
+    <Resource Include="Images\but_pin_white_12.png" />
+    <Resource Include="Images\but_save_black_10.png" />
+    <Resource Include="Images\but_save_white_10.png" />
+    <Resource Include="Images\icon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuietNotes.Core\QuietNotes.Core.csproj" />
+  </ItemGroup>
+
+</Project>
