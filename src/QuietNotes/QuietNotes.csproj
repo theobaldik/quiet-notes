@@ -4,14 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Images\icon.ico</ApplicationIcon>
+    <ApplicationIcon>Images\icon_color.ico</ApplicationIcon>
     <PackageId>QuietNotes</PackageId>
     <Version>0.1.0</Version>
     <Authors>Filip Klopec</Authors>
     <Company>Fat Camel Studio</Company>
     <Product>Quiet Notes</Product>
     <Description>Simple notes taking app.</Description>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>icon_color.ico</PackageIcon>
     <PackageReleaseNotes>Preview release</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyName>QuietNotes</AssemblyName>
@@ -40,8 +40,14 @@
     <None Remove="Images\but_pin_white_12.png" />
     <None Remove="Images\but_save_black_10.png" />
     <None Remove="Images\but_save_white_10.png" />
-    <None Remove="Images\icon.ico" />
+    <None Remove="Images\icon_black_10.png" />
+    <None Remove="Images\icon_color.ico" />
+    <None Remove="Images\icon_white_10.png" />
     <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="Images\icon_color.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -66,11 +72,9 @@
     <Resource Include="Images\but_pin_white_12.png" />
     <Resource Include="Images\but_save_black_10.png" />
     <Resource Include="Images\but_save_white_10.png" />
-    <Resource Include="Images\icon.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Images\icon_black_10.png" />
+    <Resource Include="Images\icon_color.ico" />
+    <Resource Include="Images\icon_white_10.png" />
   </ItemGroup>
 
   <ItemGroup>
