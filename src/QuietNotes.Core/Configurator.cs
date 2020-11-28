@@ -13,7 +13,7 @@ namespace Logic
     {
         public static Config Config { get; set; }
 
-        private static string rootPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static string rootPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         private static string homePath = Path.Join(rootPath, @"QuietNotes");
         private static string configPath = Path.Join(homePath, @"config.json");
         private static string notesPath = Path.Join(homePath, @"Notes");
