@@ -33,11 +33,11 @@ namespace QuietNotes
             listNotes.SelectedItem = DataHolder.CurrentNote;
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listNotes.ItemsSource);
-            view.SortDescriptions.Add(new SortDescription("DateModified", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("DateModified", ListSortDirection.Descending));
 
             SizeChanged += WinMain_SizeChanged;
             LocationChanged += WinMain_LocationChanged;
-
+            
             popupStatus.VerticalOffset = Top + Height - 20;
             popupStatus.HorizontalOffset = Left + Width - 1;
         }
