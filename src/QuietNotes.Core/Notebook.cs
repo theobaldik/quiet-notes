@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 
 namespace QuietNotes.Core
 {
@@ -24,7 +23,7 @@ namespace QuietNotes.Core
             {
                 idStack.Push(i);
             }
-            
+
             for (int i = 0; i < range; i++)
             {
                 int diff = Notes[i + 1].ID - Notes[i].ID;
@@ -48,13 +47,13 @@ namespace QuietNotes.Core
         }
         #endregion
 
-        public ObservableCollection<Note> Notes { get; private set; }               
+        public ObservableCollection<Note> Notes { get; private set; }
 
         public Notebook()
         {
             idStack = new Stack<int>();
-            Notes = new ObservableCollection<Note>();   
-        }    
+            Notes = new ObservableCollection<Note>();
+        }
 
         public void DeserializeAll()
         {

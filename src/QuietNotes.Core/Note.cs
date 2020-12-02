@@ -2,11 +2,9 @@
  * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
  */
 
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
-using System.Text;
 
 namespace QuietNotes.Core
 {
@@ -20,7 +18,7 @@ namespace QuietNotes.Core
         }
 
         public static Note Deserialize(string filePath)
-        {            
+        {
             return Serializer.Deserialize<Note>(filePath);
         }
 
@@ -49,7 +47,7 @@ namespace QuietNotes.Core
 
         private string FileName
         {
-            get => $"{ID.ToString().PadLeft(6, '0')}";    
+            get => $"{ID.ToString().PadLeft(6, '0')}";
         }
 
         public int ID { get; set; }
@@ -57,7 +55,7 @@ namespace QuietNotes.Core
         public string Color
         {
             get { return color; }
-            set { DateModified = DateTime.Now; color = value; OnPropertyChanged("Color"); } 
+            set { DateModified = DateTime.Now; color = value; OnPropertyChanged("Color"); }
         }
         private string title;
         public string Title
@@ -80,7 +78,7 @@ namespace QuietNotes.Core
 
         private bool hasChanged;
         public bool HasChanged
-        { 
+        {
             get { return hasChanged; }
             set { hasChanged = value; OnPropertyChanged("HasChanged"); }
         }

@@ -11,6 +11,6 @@ Released under the GNU GPLv3, read the file 'LICENSE' for more information.
              xmlns:local="clr-namespace:QuietNotes"
              Padding="0" Margin="0" Width="28" Height="22" BorderThickness="0">
     <StackPanel Margin="0">
-        <Image x:Name="IconImage" Width="10" Height="10"/>
+        <Image x:Name="image"/>
     </StackPanel>
 </Button>

@@ -3,14 +3,13 @@ Copyright (C) 2020 Filip Klopec
 Released under the GNU GPLv3, read the file 'LICENSE' for more information.
 -->
 
-<WrapPanel x:Class="QuietNotes.ColorPickRectangle" x:Name="colorPickRectangle"
+<Popup x:Class="QuietNotes.TempPopup" x:Name="popupTemp"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuietNotes"
-             mc:Ignorable="d" 
-             Width="28" Height="28" Margin="0">
-    <Rectangle x:Name="rectColor" Width="26" Height="26" d:Fill="Red" Margin="1" StrokeThickness="0"
-               MouseEnter="RectColor_MouseEnter" MouseLeave="RectColor_MouseLeave" MouseLeftButtonDown="RectColor_MouseLeftButtonDown"/>
-</WrapPanel>
+             mc:Ignorable="d" PopupAnimation="Fade" AllowsTransparency="True" FlowDirection="RightToLeft"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Label x:Name="label" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" Margin="0" Padding="2" Background="#F1F2F7"/>
+</Popup>

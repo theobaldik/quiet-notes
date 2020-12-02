@@ -3,8 +3,6 @@
  */
 
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -13,14 +11,14 @@ namespace QuietNotes.Core
     public static class Serializer
     {
         public static string LoadJson(string filePath)
-        {            
+        {
             if (File.Exists(filePath))
                 return File.ReadAllText(filePath, Encoding.UTF8);
             else return null;
         }
 
         private static void SaveJson(string filePath, string content)
-        {            
+        {
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 

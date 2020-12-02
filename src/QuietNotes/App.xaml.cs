@@ -2,15 +2,10 @@
  * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
+using QuietNotes.Core;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using QuietNotes.Core;
 
 namespace QuietNotes
 {
@@ -21,7 +16,7 @@ namespace QuietNotes
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);            
+            base.OnStartup(e);
             Configurator.Init();
             DataHolder.CurrentNotebook = new Notebook();
             DataHolder.CurrentNotebook.DeserializeAll();
@@ -39,8 +34,8 @@ namespace QuietNotes
                     FileInfo fileInfo = new FileInfo(filePath);
                     if (fileInfo.Length < 10000000)
                         DataHolder.CurrentNote.Title = Path.GetFileNameWithoutExtension(filePath);
-                        DataHolder.CurrentNote.Content = File.ReadAllText(filePath);
-                }                
+                    DataHolder.CurrentNote.Content = File.ReadAllText(filePath);
+                }
             }
         }
     }

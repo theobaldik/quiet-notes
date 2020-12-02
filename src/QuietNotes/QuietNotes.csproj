@@ -34,11 +34,9 @@
     <None Remove="Images\but_min_black_10.png" />
     <None Remove="Images\but_min_dark_10.png" />
     <None Remove="Images\but_min_white_10.png" />
-    <None Remove="Images\but_new_black_10.png" />
-    <None Remove="Images\but_new_white_10.png" />
-    <None Remove="Images\but_pin_black_11.png" />
+    <None Remove="Images\but_new_black_12.png" />
+    <None Remove="Images\but_new_white_12.png" />
     <None Remove="Images\but_pin_black_12.png" />
-    <None Remove="Images\but_pin_white_11.png" />
     <None Remove="Images\but_pin_white_12.png" />
     <None Remove="Images\but_save_black_10.png" />
     <None Remove="Images\but_save_white_10.png" />
@@ -71,11 +69,9 @@
     <Resource Include="Images\but_min_black_10.png" />
     <Resource Include="Images\but_min_dark_10.png" />
     <Resource Include="Images\but_min_white_10.png" />
-    <Resource Include="Images\but_new_black_10.png" />
-    <Resource Include="Images\but_new_white_10.png" />
-    <Resource Include="Images\but_pin_black_11.png" />
+    <Resource Include="Images\but_new_black_12.png" />
+    <Resource Include="Images\but_new_white_12.png" />
     <Resource Include="Images\but_pin_black_12.png" />
-    <Resource Include="Images\but_pin_white_11.png" />
     <Resource Include="Images\but_pin_white_12.png" />
     <Resource Include="Images\but_save_black_10.png" />
     <Resource Include="Images\but_save_white_10.png" />

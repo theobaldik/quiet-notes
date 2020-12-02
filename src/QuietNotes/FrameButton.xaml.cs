@@ -2,18 +2,9 @@
  * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace QuietNotes
 {
@@ -22,37 +13,32 @@ namespace QuietNotes
     /// </summary>
     public partial class FrameButton : Button
     {
-        private BitmapImage image;
         public FrameButton()
         {
             InitializeComponent();
-            Background = new SolidColorBrush(Colors.White) { Opacity = 0 };            
+            Background = new SolidColorBrush(Colors.Transparent);
         }
 
-        private string icon;
-        
-        public string Icon
+        public ImageSource Image
         {
-            get { return icon; } 
+            get { return image.Source; }
             set
             {
-                image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri($"\\Images\\{value}", UriKind.Relative);
-                image.EndInit();
-                IconImage.Source = image;
-                IconImage.Width = image.PixelWidth;
-                IconImage.Height = image.PixelHeight;
-                icon = value;
+                image.Source = value;
+                image.Width = ((BitmapImage)value).PixelWidth;
+                image.Height = ((BitmapImage)value).PixelHeight;
             }
         }
 
-        public void SetIconRotation(double angle)
+        public void SetRotation(double angle)
         {
             if (angle == 0)
-                IconImage.RenderTransform = null;
+                image.RenderTransform = null;
             else
-                IconImage.RenderTransform = new RotateTransform(angle, image.PixelWidth / 2.0, image.PixelHeight / 2.0);
-        }      
+                image.RenderTransform =
+                    new RotateTransform(angle,
+                    ((BitmapImage)image.Source).PixelWidth / 2.0,
+                    ((BitmapImage)image.Source).PixelHeight / 2.0);
+        }
     }
 }

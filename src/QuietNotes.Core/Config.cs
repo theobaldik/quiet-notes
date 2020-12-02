@@ -2,10 +2,6 @@
  * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace QuietNotes.Core
 {
     public class NoteColor
@@ -19,7 +15,7 @@ namespace QuietNotes.Core
     }
 
     public class Config
-    {      
+    {
         public static Config Deserialize()
         {
             return Serializer.Deserialize<Config>(Configurator.ConfigPath);
