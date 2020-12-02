@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic
+namespace QuietNotes.Core
 {
     public static class Configurator
     {

@@ -29,6 +29,8 @@
     <None Remove="Images\but_list_white_10.png" />
     <None Remove="Images\but_max_black_10.png" />
     <None Remove="Images\but_max_white_10.png" />
+    <None Remove="Images\but_menu_black_10.png" />
+    <None Remove="Images\but_menu_white_10.png" />
     <None Remove="Images\but_min_black_10.png" />
     <None Remove="Images\but_min_dark_10.png" />
     <None Remove="Images\but_min_white_10.png" />
@@ -40,9 +42,12 @@
     <None Remove="Images\but_pin_white_12.png" />
     <None Remove="Images\but_save_black_10.png" />
     <None Remove="Images\but_save_white_10.png" />
+    <None Remove="Images\but_settings_black_10.png" />
+    <None Remove="Images\but_settings_white_10.png" />
     <None Remove="Images\icon_black_10.png" />
     <None Remove="Images\icon_color.ico" />
     <None Remove="Images\icon_white_10.png" />
+    <Resource Include="Images\but_settings_black_10.png" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -61,6 +66,8 @@
     <Resource Include="Images\but_list_white_10.png" />
     <Resource Include="Images\but_max_black_10.png" />
     <Resource Include="Images\but_max_white_10.png" />
+    <Resource Include="Images\but_menu_black_10.png" />
+    <Resource Include="Images\but_menu_white_10.png" />
     <Resource Include="Images\but_min_black_10.png" />
     <Resource Include="Images\but_min_dark_10.png" />
     <Resource Include="Images\but_min_white_10.png" />
@@ -72,6 +79,7 @@
     <Resource Include="Images\but_pin_white_12.png" />
     <Resource Include="Images\but_save_black_10.png" />
     <Resource Include="Images\but_save_white_10.png" />
+    <Resource Include="Images\but_settings_white_10.png" />
     <Resource Include="Images\icon_black_10.png" />
     <Resource Include="Images\icon_color.ico" />
     <Resource Include="Images\icon_white_10.png" />

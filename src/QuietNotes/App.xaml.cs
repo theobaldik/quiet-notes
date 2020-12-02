@@ -10,9 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Logic;
+using QuietNotes.Core;
 
-namespace GUI
+namespace QuietNotes
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using Logic;
+using QuietNotes.Core;
 
-namespace GUI
+namespace QuietNotes
 {
     public static class DataHolder
     {        

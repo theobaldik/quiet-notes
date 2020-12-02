@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="ColorPickBut.xaml.cs">
+    <Compile Update="ColorPickRectangle.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="FrameButton.xaml.cs">
@@ -15,7 +15,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="ColorPickBut.xaml">
+    <Page Update="ColorPickRectangle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="FrameButton.xaml">

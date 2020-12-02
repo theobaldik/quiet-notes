@@ -3,10 +3,10 @@ Copyright (C) 2020 Filip Klopec
 Released under the GNU GPLv3, read the file 'LICENSE' for more information.
 -->
 
-<Application x:Class="GUI.App"
+<Application x:Class="QuietNotes.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GUI"
+             xmlns:local="clr-namespace:QuietNotes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

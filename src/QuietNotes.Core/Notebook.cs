@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 
-namespace Logic
+namespace QuietNotes.Core
 {
     public class Notebook
     {
@@ -17,6 +17,14 @@ namespace Logic
         private void LoadIDs()
         {
             int range = Notes.Count - 1;
+            if (range < 0) return;
+
+            idStack.Clear();
+            for (int i = 0; i < Notes[0].ID; i++)
+            {
+                idStack.Push(i);
+            }
+            
             for (int i = 0; i < range; i++)
             {
                 int diff = Notes[i + 1].ID - Notes[i].ID;
@@ -40,14 +48,12 @@ namespace Logic
         }
         #endregion
 
-        public ObservableCollection<Note> Notes { get; private set; }
-               
+        public ObservableCollection<Note> Notes { get; private set; }               
 
         public Notebook()
         {
             idStack = new Stack<int>();
-            Notes = new ObservableCollection<Note>();
-            LoadIDs();            
+            Notes = new ObservableCollection<Note>();   
         }    
 
         public void DeserializeAll()
@@ -56,7 +62,8 @@ namespace Logic
             foreach (string filePath in filePaths)
             {
                 Notes.Add(Note.Deserialize(filePath));
-            }    
+            }
+            LoadIDs();
         }
 
         public void SerializeAll()
@@ -86,6 +93,7 @@ namespace Logic
         {
             Notes.Remove(note);
             note.Delete();
+            LoadIDs();
         }
     }
 }
