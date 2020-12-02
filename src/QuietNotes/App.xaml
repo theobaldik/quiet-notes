@@ -9,6 +9,24 @@ Released under the GNU GPLv3, read the file 'LICENSE' for more information.
              xmlns:local="clr-namespace:QuietNotes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <BitmapImage x:Key="butCloseBlack10" UriSource="Images/but_close_black_10.png"/>
+        <BitmapImage x:Key="butCloseWhite10" UriSource="Images/but_close_white_10.png"/>
+        <BitmapImage x:Key="butColor10" UriSource="Images/but_color_10.png"/>
+        <BitmapImage x:Key="butListBlack10" UriSource="Images/but_list_black_10.png"/>
+        <BitmapImage x:Key="butListWhite10" UriSource="Images/but_list_white_10.png"/>
+        <BitmapImage x:Key="butMaxBlack10" UriSource="Images/but_max_black_10.png"/>
+        <BitmapImage x:Key="butMaxWhite10" UriSource="Images/but_max_white_10.png"/>
+        <BitmapImage x:Key="butMenuBlack10" UriSource="Images/but_menu_black_10.png"/>
+        <BitmapImage x:Key="butMenuWhite10" UriSource="Images/but_menu_white_10.png"/>
+        <BitmapImage x:Key="butMinBlack10" UriSource="Images/but_min_black_10.png"/>
+        <BitmapImage x:Key="butMinWhite10" UriSource="Images/but_min_white_10.png"/>
+        <BitmapImage x:Key="butNewBlack12" UriSource="Images/but_new_black_12.png"/>
+        <BitmapImage x:Key="butNewWhite12" UriSource="Images/but_new_white_12.png"/>
+        <BitmapImage x:Key="butPinBlack12" UriSource="Images/but_pin_black_12.png"/>
+        <BitmapImage x:Key="butPinWhite12" UriSource="Images/but_pin_white_12.png"/>
+        <BitmapImage x:Key="butSaveBlack10" UriSource="Images/but_save_black_10.png"/>
+        <BitmapImage x:Key="butSavewhite10" UriSource="Images/but_save_white_10.png"/>
+        <BitmapImage x:Key="butSettingsBlack10" UriSource="Images/but_settings_black_10.png"/>
+        <BitmapImage x:Key="butSettingsWhite10" UriSource="Images/but_settings_white_10.png"/>        
     </Application.Resources>
 </Application>
