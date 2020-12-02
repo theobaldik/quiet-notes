@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace QuietNotes
 {
     /// <summary>
     /// Interaction logic for FrameButton.xaml
