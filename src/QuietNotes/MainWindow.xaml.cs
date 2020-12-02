@@ -18,9 +18,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Logic;
+using QuietNotes.Core;
 
-namespace GUI
+namespace QuietNotes
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -32,25 +32,27 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
-            NotesList.ItemsSource = DataHolder.CurrentNotebook.Notes;            
+            listNotes.ItemsSource = DataHolder.CurrentNotebook.Notes;            
             DataContext = DataHolder.CurrentNote;
 
-            greenBut.BgColor = NoteColor.Green;
-            lightBlueBut.BgColor = NoteColor.LightBlue;
-            darkBlueBut.BgColor = NoteColor.DarkBlue;
-            yellowBut.BgColor = NoteColor.Yellow;
-            orangeBut.BgColor = NoteColor.Orange;
-            redBut.BgColor = NoteColor.Red;
+            colorPickRectGreen.Color = NoteColor.Green;
+            colorPickRectLightBlue.Color = NoteColor.LightBlue;
+            colorPickRectDarkBlue.Color = NoteColor.DarkBlue;
+            colorPickRectYellow.Color = NoteColor.Yellow;
+            colorPickRectOrange.Color = NoteColor.Orange;
+            colorPickRectRed.Color = NoteColor.Red;
 
-            NotesList.SelectedItem = DataHolder.CurrentNote;
+            listNotes.SelectedItem = DataHolder.CurrentNote;
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(NotesList.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listNotes.ItemsSource);
             view.SortDescriptions.Add(new SortDescription("DateModified", ListSortDirection.Ascending));
-            SizeChanged += MainWindow_SizeChanged;
-            LocationChanged += MainWindow_LocationChanged;
-            statusPopup.VerticalOffset = Top + Height - 22;
-            statusPopup.HorizontalOffset = Left + Width - 1;
-            statusPopup.FlowDirection = FlowDirection.RightToLeft;
+
+            SizeChanged += WinMain_SizeChanged;
+            LocationChanged += WinMain_LocationChanged;
+
+            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.HorizontalOffset = Left + Width - 1;
+            popupStatus.FlowDirection = FlowDirection.RightToLeft;
 
 
             StatusTimer = new DispatcherTimer()
@@ -60,52 +62,50 @@ namespace GUI
             StatusTimer.Tick += delegate (object sender, EventArgs e)
             {
                 StatusTimer.Stop();
-                if (statusPopup.IsOpen) statusPopup.IsOpen = false;
+                if (popupStatus.IsOpen) popupStatus.IsOpen = false;
             };
         }       
 
         private void ShowStatus(string text)
         {
-            statusLabel.Content = text;
-            statusPopup.IsOpen = true;
+            labelStatus.Content = text;
+            popupStatus.IsOpen = true;
             if (StatusTimer.IsEnabled)
                 StatusTimer.Stop();
             StatusTimer.Start();
         }
 
-        private void MainWindow_LocationChanged(object sender, EventArgs e)
+        private void WinMain_LocationChanged(object sender, EventArgs e)
         {
-            statusPopup.VerticalOffset = Top + Height - 22;
-            statusPopup.HorizontalOffset = Left + Width - 1;
-            PopupColors.HorizontalOffset++;
-            PopupColors.HorizontalOffset--;
-            PopupList.HorizontalOffset++;
-            PopupList.HorizontalOffset--;
+            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.HorizontalOffset = Left + Width - 1;
+            popupColors.HorizontalOffset++;
+            popupColors.HorizontalOffset--;
         }
 
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void WinMain_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            statusPopup.VerticalOffset = Top + Height - 22;
-            statusPopup.HorizontalOffset = Left + Width - 1;
+            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.HorizontalOffset = Left + Width - 1;
         }                
 
-        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void TextContent_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            textBox.SelectedText = string.Empty;
+            textContent.SelectedText = string.Empty;
             if (e.Key == Key.Tab)
             {
-                int pos = textBox.CaretIndex;
-                textBox.Text = textBox.Text.Insert(pos, "  ");
-                textBox.CaretIndex = pos + 2;
+                int pos = textContent.CaretIndex;
+                textContent.Text = textContent.Text.Insert(pos, "  ");
+                textContent.CaretIndex = pos + 2;
                 e.Handled = true;
             }
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void WinMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {                
             DragMove();
         }
-        private void CloseShortcut(Object sender, ExecutedRoutedEventArgs e)
+        private void ComClose_Executed(Object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -120,7 +120,10 @@ namespace GUI
 
         private void ButList_Click(object sender, RoutedEventArgs e)
         {
-            PopupList.IsOpen = !PopupList.IsOpen;
+            if (listNotes.Visibility == Visibility.Collapsed)
+                listNotes.Visibility = Visibility.Visible;
+            else
+                listNotes.Visibility = Visibility.Collapsed;
         }
 
         private void ButClose_Click(object sender, RoutedEventArgs e)
@@ -148,13 +151,13 @@ namespace GUI
             Topmost = !Topmost;
             if (Topmost)
             {
-                ButPin.SetIconRotation(0);
+                butPin.SetIconRotation(0);
                 ShowStatus("Always on top ON");
             }
                 
             else
             {
-                ButPin.SetIconRotation(-90);
+                butPin.SetIconRotation(-90);
                 ShowStatus("Always on top OFF");
             }                    
         }
@@ -176,34 +179,34 @@ namespace GUI
 
         private void ButColor_Click(object sender, RoutedEventArgs e)
         {
-            PopupColors.IsOpen = !PopupColors.IsOpen;
+            popupColors.IsOpen = !popupColors.IsOpen;
         }
 
-        private void titleLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void LabelTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            titleLabel.Visibility = Visibility.Collapsed;
-            titleTextBox.Visibility = Visibility.Visible;
-            titleTextBox.Focus();
-            titleTextBox.CaretIndex = titleTextBox.Text.Length;
+            labelTitle.Visibility = Visibility.Collapsed;
+            textTitle.Visibility = Visibility.Visible;
+            textTitle.Focus();
+            textTitle.CaretIndex = textTitle.Text.Length;
         }
 
-        private void titleTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void TextTitle_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)             
-                textBox.Focus();           
+                textContent.Focus();           
         }
 
-        private void titleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void TextTitle_LostFocus(object sender, RoutedEventArgs e)
         {
-            titleLabel.Visibility = Visibility.Visible;
-            titleTextBox.Visibility = Visibility.Collapsed;
+            labelTitle.Visibility = Visibility.Visible;
+            textTitle.Visibility = Visibility.Collapsed;
         }
 
-        private void NotesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListNotes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (NotesList.SelectedIndex == -1)
-                NotesList.SelectedItem = DataHolder.CurrentNote;
-            DataHolder.CurrentNote = (Note)NotesList.SelectedItem;
+            if (listNotes.SelectedIndex == -1)
+                listNotes.SelectedItem = DataHolder.CurrentNote;
+            DataHolder.CurrentNote = (Note)listNotes.SelectedItem;
             DataContext = DataHolder.CurrentNote;
         }
 
@@ -212,31 +215,30 @@ namespace GUI
             if (args.PropertyName == "HasChanged")
             {
                 if (((Note)sender).HasChanged)
-                    titleLabel.FontWeight = FontWeights.Bold;
+                    labelTitle.FontWeight = FontWeights.Bold;
                 else
-                    titleLabel.FontWeight = FontWeights.Normal;
+                    labelTitle.FontWeight = FontWeights.Normal;
             }            
         }
 
-        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TextContent_GotFocus(object sender, RoutedEventArgs e)
         {
-            PopupColors.IsOpen = false;
-            PopupList.IsOpen = false;
+            popupColors.IsOpen = false;
         }
 
-        private void DeleteShortcut(object sender, ExecutedRoutedEventArgs e)
+        private void ComDeleteNote_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (PopupList.IsOpen)
+            if (listNotes.Visibility == Visibility.Visible)
             {
-                if (NotesList.SelectedIndex != -1)
+                if (listNotes.SelectedIndex != -1)
                 {
-                    Note tempNote = (Note)NotesList.SelectedItem;
-                    int temp = NotesList.SelectedIndex;
-                    DataHolder.CurrentNotebook.RemoveNote((Note)NotesList.SelectedItem);
-                    if (temp > NotesList.Items.Count - 1)
+                    Note tempNote = (Note)listNotes.SelectedItem;
+                    int temp = listNotes.SelectedIndex;
+                    DataHolder.CurrentNotebook.RemoveNote((Note)listNotes.SelectedItem);
+                    if (temp > listNotes.Items.Count - 1)
                         temp -= 1;
-                    if (NotesList.Items.Count > 0)
-                        NotesList.SelectedIndex = temp;
+                    if (listNotes.Items.Count > 0)
+                        listNotes.SelectedIndex = temp;
                     else
                     {
                         DataHolder.CurrentNote = DataHolder.CurrentNotebook.CreateNote();
