@@ -13,44 +13,60 @@ Released under the GNU GPLv3, read the file 'LICENSE' for more information.
         Deactivated="Window_Deactivated" Activated="Window_Activated"
         Title="Quiet Notes" Height="535" Width="485" MouseLeftButtonDown="WinMain_MouseLeftButtonDown"
         BorderThickness="0" Topmost="True">
-    
+
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0" UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <RoutedUICommand x:Key="comClose"/>
             <RoutedUICommand x:Key="comDeleteNote"/>
+            <RoutedUICommand x:Key="comNewNote"/>
+            <RoutedUICommand x:Key="comSaveNote"/>
+            <RoutedUICommand x:Key="comNextNote"/>
+            <RoutedUICommand x:Key="comPreviousNote"/>
+            <RoutedUICommand x:Key="comToggleListNotes"/>
+            <RoutedUICommand x:Key="comTogglePopupColors"/>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Window.InputBindings>
         <KeyBinding  Key="Esc" Command="{StaticResource comClose}"/>
         <KeyBinding Key="Delete" Command="{StaticResource comDeleteNote}"/>
+        <KeyBinding Gesture="Ctrl+N" Command="{StaticResource comNewNote}"/>
+        <KeyBinding Gesture="Ctrl+S" Command="{StaticResource comSaveNote}"/>
+        <KeyBinding Gesture="Alt+Down" Command="{StaticResource comNextNote}"/>
+        <KeyBinding Gesture="Alt+Up" Command="{StaticResource comPreviousNote}"/>
     </Window.InputBindings>
 
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource comClose}" Executed="ComClose_Executed" />
         <CommandBinding Command="{StaticResource comDeleteNote}" Executed="ComDeleteNote_Executed"/>
+        <CommandBinding Command="{StaticResource comNewNote}" Executed="ComNewNote_Executed"/>
+        <CommandBinding Command="{StaticResource comSaveNote}" Executed="ComSaveNote_Executed"/>
+        <CommandBinding Command="{StaticResource comNextNote}" Executed="ComNextNote_Executed"/>
+        <CommandBinding Command="{StaticResource comPreviousNote}" Executed="ComPreviousNote_Executed"/>
+        <CommandBinding Command="{StaticResource comToggleListNotes}" Executed="ComToggleListNotes"/>
+        <CommandBinding Command="{StaticResource comTogglePopupColors}" Executed="ComTogglePopupColors"/>
     </Window.CommandBindings>
 
     <Grid x:Name="gridMain" Background="{Binding Color}">
         <Grid.RowDefinitions>
             <RowDefinition Height="22"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>        
+        </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0" FlowDirection="RightToLeft">
-            <local:FrameButton x:Name="butClose" Icon="but_close_white_10.png" Click="ButClose_Click"/>
-            <local:FrameButton x:Name="butMax" Icon="but_max_white_10.png" Click="ButMax_Click"/>
-            <local:FrameButton x:Name="butMin" Icon="but_min_white_10.png" Click="ButMin_Click"/>
-            <local:FrameButton x:Name="butPin" Icon="but_pin_white_12.png" Click="ButPin_Click"/>
+            <local:FrameButton x:Name="butClose" Image="{StaticResource butCloseWhite10}" Click="ButClose_Click"/>
+            <local:FrameButton x:Name="butMax" Image="{StaticResource butMaxWhite10}" Click="ButMax_Click"/>
+            <local:FrameButton x:Name="butMin" Image="{StaticResource butMinWhite10}" Click="ButMin_Click"/>
+            <local:FrameButton x:Name="butPin" Image="{StaticResource butPinWhite12}" Click="ButPin_Click"/>
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0">
-            <local:FrameButton x:Name="butSettings" Icon="but_settings_white_10.png"/>
-            <local:FrameButton x:Name="butList" Icon="but_list_white_10.png" Click="ButList_Click"/>
+            <local:FrameButton x:Name="butSettings" Image="{StaticResource butSettingsWhite10}"/>
+            <local:FrameButton x:Name="butList" Image="{StaticResource butListWhite10}" Command="{StaticResource comToggleListNotes}"/>
             <Popup x:Name="popupColors" PlacementTarget="{Binding ElementName=butColor}" Placement="Bottom" PopupAnimation="Slide" AllowsTransparency="True">
                 <Grid Background="#202020">
                     <Grid.RowDefinitions>
@@ -70,15 +86,15 @@ Released under the GNU GPLv3, read the file 'LICENSE' for more information.
                     <local:ColorPickRectangle x:Name="colorPickRectRed" Grid.Row="1" Grid.Column="2"/>
                 </Grid>
             </Popup>
-            <local:FrameButton x:Name="butNew" Icon="but_new_white_10.png" Click="ButNew_Click"/>
-            <local:FrameButton x:Name="butSave" Icon="but_save_white_10.png" Click="ButSave_Click"/>
-            <local:FrameButton x:Name="butColor" Icon="but_color_10.png" Click="ButColor_Click"/>
+            <local:FrameButton x:Name="butNew" Image="{StaticResource butNewWhite12}" Command="{StaticResource comNewNote}"/>
+            <local:FrameButton x:Name="butSave" Image="{StaticResource butSavewhite10}" Command="{StaticResource comSaveNote}"/>
+            <local:FrameButton x:Name="butColor" Image="{StaticResource butColor10}" Command="{StaticResource comTogglePopupColors}"/>
             <Label x:Name="labelTitle" Content="{Binding Title}" FontFamily="Arial" FontSize="14" FontWeight="Bold" Margin="10 0 0 0" Foreground="White" Padding="2 2 2 2" VerticalAlignment="Center" MouseDoubleClick="LabelTitle_MouseDoubleClick" HorizontalAlignment="Left"/>
             <TextBox x:Name="textTitle" Text="{Binding Title, UpdateSourceTrigger=LostFocus}" FontFamily="Arial" FontSize="14" Foreground="White"
                         Padding="0" VerticalAlignment="Center" Visibility="Collapsed" PreviewKeyDown="TextTitle_PreviewKeyDown" LostFocus="TextTitle_LostFocus" Background="{Binding Color}" Height="22"
                         Margin="10 0 0 0" HorizontalAlignment="Left"/>
         </StackPanel>
-        
+
         <DockPanel Grid.Row="1" Margin="0">
             <ListView x:Name="listNotes" DockPanel.Dock="Left" SelectionChanged="ListNotes_SelectionChanged" SelectionMode="Single" ItemsSource="{Binding Notes}" Background="#202020" Margin="1,0,0,1" BorderThickness="0" Visibility="Collapsed">
                 <ListView.ItemTemplate>
@@ -98,9 +114,8 @@ Released under the GNU GPLv3, read the file 'LICENSE' for more information.
             SelectionBrush="#0076ED" SelectionOpacity="0.2" GotFocus="TextContent_GotFocus">
             </TextBox>
         </DockPanel>
-        
-        <Popup x:Name="popupStatus" PopupAnimation="Fade" AllowsTransparency="True" Placement="Absolute" Height="22">
-            <Label x:Name="labelStatus" FontSize="14" FontFamily="Arial" Background="#F1F2F7" VerticalAlignment="Center" Margin="0" Padding="2"/>
-        </Popup>        
+
+        <local:TempPopup x:Name="popupStatus" Placement="Absolute" Height="22"/>
+
     </Grid>
 </Window>

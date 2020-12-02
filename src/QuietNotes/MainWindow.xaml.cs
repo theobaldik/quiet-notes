@@ -2,23 +2,13 @@
  * Released under the GNU GPLv3, read the file 'LICENSE' for more information.
  */
 
+using QuietNotes.Core;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using QuietNotes.Core;
 
 namespace QuietNotes
 {
@@ -27,12 +17,10 @@ namespace QuietNotes
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private DispatcherTimer StatusTimer { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            listNotes.ItemsSource = DataHolder.CurrentNotebook.Notes;            
+            listNotes.ItemsSource = DataHolder.CurrentNotebook.Notes;
             DataContext = DataHolder.CurrentNote;
 
             colorPickRectGreen.Color = NoteColor.Green;
@@ -50,34 +38,13 @@ namespace QuietNotes
             SizeChanged += WinMain_SizeChanged;
             LocationChanged += WinMain_LocationChanged;
 
-            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.VerticalOffset = Top + Height - 20;
             popupStatus.HorizontalOffset = Left + Width - 1;
-            popupStatus.FlowDirection = FlowDirection.RightToLeft;
-
-
-            StatusTimer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromSeconds(2)
-            };
-            StatusTimer.Tick += delegate (object sender, EventArgs e)
-            {
-                StatusTimer.Stop();
-                if (popupStatus.IsOpen) popupStatus.IsOpen = false;
-            };
-        }       
-
-        private void ShowStatus(string text)
-        {
-            labelStatus.Content = text;
-            popupStatus.IsOpen = true;
-            if (StatusTimer.IsEnabled)
-                StatusTimer.Stop();
-            StatusTimer.Start();
         }
 
         private void WinMain_LocationChanged(object sender, EventArgs e)
         {
-            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.VerticalOffset = Top + Height - 20;
             popupStatus.HorizontalOffset = Left + Width - 1;
             popupColors.HorizontalOffset++;
             popupColors.HorizontalOffset--;
@@ -85,9 +52,9 @@ namespace QuietNotes
 
         private void WinMain_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            popupStatus.VerticalOffset = Top + Height - 22;
+            popupStatus.VerticalOffset = Top + Height - 20;
             popupStatus.HorizontalOffset = Left + Width - 1;
-        }                
+        }
 
         private void TextContent_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -102,7 +69,7 @@ namespace QuietNotes
         }
 
         private void WinMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {                
+        {
             DragMove();
         }
         private void ComClose_Executed(Object sender, ExecutedRoutedEventArgs e)
@@ -115,15 +82,7 @@ namespace QuietNotes
         }
         private void Window_Activated(object sender, EventArgs e)
         {
-            
-        }
 
-        private void ButList_Click(object sender, RoutedEventArgs e)
-        {
-            if (listNotes.Visibility == Visibility.Collapsed)
-                listNotes.Visibility = Visibility.Visible;
-            else
-                listNotes.Visibility = Visibility.Collapsed;
         }
 
         private void ButClose_Click(object sender, RoutedEventArgs e)
@@ -137,7 +96,7 @@ namespace QuietNotes
             {
                 WindowState = WindowState.Normal;
                 return;
-            }                
+            }
             WindowState = WindowState.Maximized;
         }
 
@@ -151,35 +110,15 @@ namespace QuietNotes
             Topmost = !Topmost;
             if (Topmost)
             {
-                butPin.SetIconRotation(0);
-                ShowStatus("Always on top ON");
+                butPin.SetRotation(0);
+                popupStatus.ShowText("Always on top ON");
             }
-                
+
             else
             {
-                butPin.SetIconRotation(-90);
-                ShowStatus("Always on top OFF");
-            }                    
-        }
-
-        private void ButNew_Click(object sender, RoutedEventArgs e)
-        {
-            if (!DataHolder.CurrentNote.IsEmpty())
-            {
-                DataHolder.CurrentNote = DataHolder.CurrentNotebook.CreateNote();
-                DataContext = DataHolder.CurrentNote;
-            }                
-        }
-
-        private void ButSave_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataHolder.CurrentNote.Serialize())
-                ShowStatus("Note saved");
-        }
-
-        private void ButColor_Click(object sender, RoutedEventArgs e)
-        {
-            popupColors.IsOpen = !popupColors.IsOpen;
+                butPin.SetRotation(-90);
+                popupStatus.ShowText("Always on top OFF");
+            }
         }
 
         private void LabelTitle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -192,8 +131,8 @@ namespace QuietNotes
 
         private void TextTitle_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)             
-                textContent.Focus();           
+            if (e.Key == Key.Enter)
+                textContent.Focus();
         }
 
         private void TextTitle_LostFocus(object sender, RoutedEventArgs e)
@@ -218,7 +157,7 @@ namespace QuietNotes
                     labelTitle.FontWeight = FontWeights.Bold;
                 else
                     labelTitle.FontWeight = FontWeights.Normal;
-            }            
+            }
         }
 
         private void TextContent_GotFocus(object sender, RoutedEventArgs e)
@@ -244,10 +183,55 @@ namespace QuietNotes
                         DataHolder.CurrentNote = DataHolder.CurrentNotebook.CreateNote();
                         DataContext = DataHolder.CurrentNote;
                     }
-                    ShowStatus($"Deleted {tempNote.Title}");
+                    popupStatus.ShowText($"Deleted {tempNote.Title}");
                     e.Handled = true;
                 }
             }
         }
+
+        private void ComNewNote_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!DataHolder.CurrentNote.IsEmpty())
+            {
+                DataHolder.CurrentNote = DataHolder.CurrentNotebook.CreateNote();
+                DataContext = DataHolder.CurrentNote;
+            }
+        }
+
+        private void ComSaveNote_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (DataHolder.CurrentNote.Serialize())
+                popupStatus.ShowText("Note saved");
+        }
+
+        private void ComNextNote_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (listNotes.SelectedIndex < listNotes.Items.Count - 1)
+                listNotes.SelectedIndex++;
+            else
+                listNotes.SelectedIndex = 0;
+        }
+
+        private void ComPreviousNote_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (listNotes.SelectedIndex > 0)
+                listNotes.SelectedIndex--;
+            else
+                listNotes.SelectedIndex = listNotes.Items.Count - 1;
+        }
+
+        private void ComToggleListNotes(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (listNotes.Visibility == Visibility.Collapsed)
+                listNotes.Visibility = Visibility.Visible;
+            else
+                listNotes.Visibility = Visibility.Collapsed;
+        }
+
+        private void ComTogglePopupColors(object sender, ExecutedRoutedEventArgs e)
+        {
+            popupColors.IsOpen = !popupColors.IsOpen;
+        }
+
     }
 }
