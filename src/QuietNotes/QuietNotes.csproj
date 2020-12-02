@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\icon_color.ico</ApplicationIcon>
     <PackageId>QuietNotes</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.2</Version>
     <Authors>Filip Klopec</Authors>
     <Company>Fat Camel Studio</Company>
     <Product>Quiet Notes</Product>
